@@ -1,0 +1,198 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans "Steil-Plugin Report-Tool" %}{% endblock %}
+{% block page_id %}page-steil-plugin-reporter{% endblock %}
+
+{% block contents %}
+<!--whole custom plugin content-->
+<div id="steil-plugin-reporter" class="steil-plugin-container">
+
+    <!--includes header bar, toolbar and toolbar buttons-->
+    <div id="header-content">
+        <!--plugin header bar with icon-->
+        <div class="row steil-plugin-headerbar">
+            <div class="col-sm-11">
+                <h2 class="steil-plugin-headerbar-title">Steil-Plugin: Report-Tool</h2>
+            </div>
+        </div>
+
+        <!--toolbar header-->
+        <div class="row steil-plugin-toolbar-header-container">
+            <div class="col-sm steil-plugin-toolbar-header-title">
+                <h4 class="steil-plugin-toolbar-header-content">Tool bar</h4>
+                <button type="button" class="btn btn-primary steil-plugin-button-right" id="btn-toggle-toolbar" style="float:right; margin-right:5px; margin-top: 5px;">Collapse</button>
+            </div>
+        </div>
+
+        <!--label descriptions-->
+        <div class="row steil-plugin-toolbar-header-container" id="toolbar-header-container">
+
+            <div class="steil-plugin-quickstart-input-container col-sm-2">
+                <label class="steil-plugin-quickstart-input-label">Test plan:</label>
+                <select id="drp-testplan" class="steil-plugin-quickstart-input-element"></select>
+            </div>
+            <div class="steil-plugin-quickstart-input-container col-sm-2">
+                <label class="steil-plugin-quickstart-input-label">Test run: </label>
+                <select id="drp-testrun" class="steil-plugin-quickstart-input-element"></select>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="row steil-plugin-toolbar-body-container" id="toolbar-body-container">
+
+        <div id="add_diagramm_container">
+            <div class="steil-plugin-quickstart-input-container col-sm-2">
+                <label class="steil-plugin-quickstart-input-label">Status type: </label>
+                <select id="drp-add-diagramm-statustype" class="steil-plugin-quickstart-input-element"></select>
+            </div>
+            <div class="steil-plugin-quickstart-input-container col-sm-2">
+                <label class="steil-plugin-quickstart-input-label">Report field: </label>
+                <select id="drp-add-diagramm-field" class="steil-plugin-quickstart-input-element"></select>
+            </div>
+            <div class="steil-plugin-quickstart-input-container col-sm-2">
+                <label class="steil-plugin-quickstart-input-label">Group By (optional): </label>
+                <select id="drp-add-diagramm-groupfield" class="steil-plugin-quickstart-input-element"></select>
+            </div>
+            <div class="steil-plugin-quickstart-input-container col-sm-2">
+                <label class="steil-plugin-quickstart-input-label">Chart type: </label>
+                <select id="drp-add-diagramm-diagrammtype" class="steil-plugin-quickstart-input-element"></select>
+            </div>
+            <button id="btn-addChart" type="button" class="btn btn-primary">Add as chart</button>
+            <button id="btn-addTable" type="button" class="btn btn-primary">Add as table</button>
+        </div>
+
+    </div>
+
+    <!--includes test plan and test run information -->
+    <div class="row">
+        <div class="col-sm-12">
+
+            <div class="row steil-plugin-toolbar-header-container">
+                <div class="col-sm steil-plugin-toolbar-header-title">
+                    <h4 class="steil-plugin-toolbar-header-content">Test plan and Test run information</h4>
+                    <button type="button" class="btn btn-primary steil-plugin-button-right" id="btn-toggle-planinfo" style="float:right; margin-right:5px; margin-top: 5px;">Collapse</button>
+                </div>
+            </div>
+
+            <div id="testplan-container">
+                <div class="steil-plugin-quickstart-input-container col-sm-2">
+                    <label class="steil-plugin-quickstart-input-label">Text:</label>
+                    <input type="text" id="testplan-text" class="steil-plugin-quickstart-input-element" disabled>
+                </div>
+                <div class="steil-plugin-quickstart-input-container col-sm-2">
+                    <label class="steil-plugin-quickstart-input-label">Plan type:</label>
+                    <input type="text" id="testplan-plantype" class="steil-plugin-quickstart-input-element" disabled>
+                </div>
+                <div class="steil-plugin-quickstart-input-container col-sm-2">
+                    <label class="steil-plugin-quickstart-input-label">Author:</label>
+                    <input type="text" id="testplan-author" class="steil-plugin-quickstart-input-element" disabled>
+                </div>
+                <div class="steil-plugin-quickstart-input-container col-sm-2">
+                    <label class="steil-plugin-quickstart-input-label">Created at:</label>
+                    <input type="text" id="testplan-created-at" class="steil-plugin-quickstart-input-element" disabled>
+                </div>
+                <div class="steil-plugin-quickstart-input-container col-sm-2">
+                    <label class="steil-plugin-quickstart-input-label">Product:</label>
+                    <input type="text" id="testplan-product" class="steil-plugin-quickstart-input-element" disabled>
+                </div>
+                <div class="steil-plugin-quickstart-input-container col-sm-2">
+                    <label class="steil-plugin-quickstart-input-label">Product version:</label>
+                    <input type="text" id="testplan-product-version" class="steil-plugin-quickstart-input-element" disabled>
+                </div>
+            </div>
+
+            <div id="testrun-container">
+                <div class="steil-plugin-quickstart-input-container col-sm-2">
+                    <label class="steil-plugin-quickstart-input-label">Summary:</label>
+                    <input type="text" id="testrun-summary" class="steil-plugin-quickstart-input-element" disabled>
+                </div>
+                <div class="steil-plugin-quickstart-input-container col-sm-2">
+                    <label class="steil-plugin-quickstart-input-label">Test manager:</label>
+                    <input type="text" id="testrun-manager" class="steil-plugin-quickstart-input-element" disabled>
+                </div>
+                <div class="steil-plugin-quickstart-input-container col-sm-2">
+                    <label class="steil-plugin-quickstart-input-label">Default tester:</label>
+                    <input type="text" id="testrun-default-tester" class="steil-plugin-quickstart-input-element" disabled>
+                </div>
+                <div class="steil-plugin-quickstart-input-container col-sm-2">
+                    <label class="steil-plugin-quickstart-input-label">Notes:</label>
+                    <input type="text" id="testrun-notes" class="steil-plugin-quickstart-input-element" disabled>
+                </div>
+                <div class="steil-plugin-quickstart-input-container col-sm-2">
+                    <label class="steil-plugin-quickstart-input-label">Planned start:</label>
+                    <input type="text" id="testrun-planned-start" class="steil-plugin-quickstart-input-element" disabled>
+                </div>
+                <div class="steil-plugin-quickstart-input-container col-sm-2">
+                    <label class="steil-plugin-quickstart-input-label">Planned stop:</label>
+                    <input type="text" id="testrun-planned-stop" class="steil-plugin-quickstart-input-element" disabled>
+                </div>
+                <div class="steil-plugin-quickstart-input-container col-sm-2">
+                    <label class="steil-plugin-quickstart-input-label">Started at:</label>
+                    <input type="text" id="testrun-started-at" class="steil-plugin-quickstart-input-element" disabled>
+                </div>
+                <div class="steil-plugin-quickstart-input-container col-sm-2">
+                    <label class="steil-plugin-quickstart-input-label">Stopped at:</label>
+                    <input type="text" id="testrun-stopped-at" class="steil-plugin-quickstart-input-element" disabled>
+                </div>
+                <div class="steil-plugin-quickstart-input-container col-sm-2">
+                    <label class="steil-plugin-quickstart-input-label">Total estimation:</label>
+                    <input type="text" id="testrun-total-estimation" class="steil-plugin-quickstart-input-element" disabled>
+                </div>
+                <div class="steil-plugin-quickstart-input-container col-sm-2">
+                    <label class="steil-plugin-quickstart-input-label">Booked times:</label>
+                    <input type="text" id="testrun-booked-times" class="steil-plugin-quickstart-input-element" disabled>
+                </div>
+                <div class="steil-plugin-quickstart-input-container col-sm-2">
+                    <label class="steil-plugin-quickstart-input-label">Remaining estimate:</label>
+                    <input type="text" id="testrun-remaining-estimates" class="steil-plugin-quickstart-input-element" disabled>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+
+            <div class="row steil-plugin-toolbar-header-container">
+                <div class="col-sm steil-plugin-toolbar-header-title">
+                    <h4 class="steil-plugin-toolbar-header-content">Preview</h4>
+                </div>
+            </div>
+
+            <div id="body-content">
+                <h3 id="reporter-no-content-placeholder">No preview available - Start creating new charts and tables</h3>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="steil-plugin-footer">
+        <div class="btn-toolbar steil-plugin-spacer-top" role="toolbar">
+            <button type="button" class="btn btn-primary steil-plugin-button-right" style="float:left;" id="btn-manual">Show manual</button>
+            <button type="button" class="btn btn-primary steil-plugin-button-right" style="float:right;" id="btn-export-csv">Export as CSV</button>
+            <button type="button" class="btn btn-primary steil-plugin-button-right" style="float:right;" id="btn-export-pdf">Export as PDF</button>
+            <button type="button" class="btn btn-danger steil-plugin-button-right" style="float:right;" id="btn-reset">Reset</button>
+        </div>
+    </div>
+</div>
+
+{{ basedata | json_script:"base-data" }}
+
+<!--loaded stylesheets and scripts-->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="{% static 'css/shared.css' %}" />
+<script src="{% static 'c3/c3.min.js' %}"></script>
+<script src="{% static 'd3/d3.min.js' %}"></script>
+<script src="{% static 'js/ext/html2canvas.js' %}"></script>
+<script src="{% static 'js/ext/dompurify.js' %}"></script>
+<script src="{% static 'js/ext/jsPDF.js' %}"></script>
+<script src="{% static 'js/ext/charts.js' %}"></script>
+<script src="{% static 'js/ext/sweetalert.js' %}"></script>
+<script type="module" src="{% static 'js/shared.js' %}"></script>
+<script type="module" src="{% static 'js/reporter.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans "Steil-Plugin Generic Import-Tool" %}{% endblock %}
+{% block page_id %}page-steil-plugin-importer{% endblock %}
+
+{% block contents %}
+<!--whole custom plugin content-->
+<div id="steil-plugin-importer" class="steil-plugin-container">    
+
+    <!--includes header bar, toolbar and toolbar buttons-->
+    <div id="header-content">
+
+        <!--plugin header bar with icon-->
+        <div class="row steil-plugin-headerbar">
+            <div class="col-sm-11">
+                <h2 class="steil-plugin-headerbar-title">Steil-Plugin: Generic Import-Tool</h2>
+            </div>
+        </div>
+
+        <!--toolbar header-->
+        <div class="row steil-plugin-toolbar-header-container">
+            <div class="col-sm steil-plugin-toolbar-header-title">
+                <h4 class="steil-plugin-toolbar-header-content">Tool bar</h4>
+            </div>
+        </div>
+
+        <!--label descriptions-->
+        <div class="row steil-plugin-toolbar-header-container">
+            <div class="col-sm-2"><label>Please select entity type:</label></div>
+            <div class="col-sm-2"><label>Please select source file:</label></div>
+        </div>
+
+        <!--user interface elements-->
+        <div class="row steil-plugin-toolbar-body-container">
+            
+            <!--table selector dropdown-->
+            <div class="col-sm-2">
+                <select id="drp-entitytype"></select>
+            </div>
+            
+            <!--input file selector-->
+            <div class="col-sm-2">
+                <div class="mb-3">
+                    <input class="form-control" type="file" id="inp-file" accept=".csv">
+                </div>
+            </div>
+
+            <!--button groups for validating and importing table-->
+            <div class="btn-toolbar" role="toolbar">
+                <button type="button" class="btn btn-primary" id="btn-validate" disabled>Validate file</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!--includes preview table-->
+
+    <div class="row" style="margin-bottom: 10px;">
+        <div class="col-sm-12">
+
+            <div class="row steil-plugin-toolbar-header-container">
+                <div class="col-sm steil-plugin-toolbar-header-title">
+                    <h4 class="steil-plugin-toolbar-header-content">Preview</h4>
+                    <button type="button" class="btn btn-primary steil-plugin-button-right" id="btn-toggle-preview" style="float:right; margin-right:5px; margin-top: 5px;">Collapse</button>
+                </div>
+            </div>
+
+            <div class="col-sm-12" id="preview-container">
+                <!--preview table buttonset for exporting-->
+
+                <h4>Validated datasets ready to import</h4>
+
+                <div class="btn-toolbar steil-plugin-spacer-bottom " role="toolbar">
+                    <button type="button" class="btn btn-primary btn-export" id="btn_export_preview_table" value="tbl_preview">Download table</button>
+                </div>
+
+                <!--preview table wrapper-->
+                <div id="tbl_preview_wrapper">
+                    <table id="tbl_preview"></table>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <!--includes result tables-->
+    <div class="row">
+        <div class="col-sm-12">
+
+            <div class="row steil-plugin-toolbar-header-container">
+                <div class="col-sm steil-plugin-toolbar-header-title">
+                    <h4 class="steil-plugin-toolbar-header-content">Results</h4>
+                </div>
+            </div>
+
+            <!--includes successful imported datasets table-->
+            <div class="col-sm-6"> 
+                <h4>Successfully imported datasets</h4>
+
+                <!--success table buttonset for exporting-->
+                <div class="btn-toolbar steil-plugin-spacer-bottom" role="toolbar">
+                    <button type="button" class="btn btn-primary btn-export" id="btn_export_success_table" value="tbl_result_success">Download table</button>
+                </div>
+
+                <!--success table wrapper-->
+                <div id="tbl_result_success_wrapper">
+                    <table id="tbl_result_success"></table>
+                </div>
+            </div>
+
+            <!--includes errornous imported datasets table-->
+            <div class="col-sm-6"> 
+                <h4>Errorneous datasets</h4>
+
+                <!--error table buttonset for exporting-->
+                <div class="btn-toolbar steil-plugin-spacer-bottom " role="toolbar">
+                    <button type="button" class="btn btn-primary btn-export" id="btn_export_error_table" value="tbl_result_error">Download table</button>
+                </div>
+
+                <!--error table wrapper-->
+                <div id="tbl_result_error_wrapper">
+                    <table id="tbl_result_error"></table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+    <div class="steil-plugin-footer">
+        <div class="btn-toolbar steil-plugin-spacer-top" role="toolbar">
+            <button type="button" class="btn btn-primary steil-plugin-button-right" style="float:left;" id="btn-manual">Show manual</button>
+            <button type="button" class="btn btn-primary steil-plugin-button-right" style="float:left;"id="btn-download-metadata">Download base data</button>
+            <button type="button" class="btn btn-primary steil-plugin-button-right" style="float:right;"id="btn-import" disabled>Start import</button>
+            <button type="button" class="btn btn-danger steil-plugin-button-right" style="float:right;" id="btn-reset">Reset</button>
+        </div>
+    </div>
+</div>
+
+{{ basedata | json_script:"base-data" }}
+
+<!--loaded stylesheets and scripts-->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="{% static 'css/shared.css' %}" />
+<script src="{% static 'c3/c3.min.js' %}"></script>
+<script src="{% static 'd3/d3.min.js' %}"></script>
+<script src="{% static 'js/ext/sweetalert.js' %}"></script>
+<script type="module" src="{% static 'js/shared.js' %}"></script>
+<script type="module" src="{% static 'js/importer.js' %}"></script>
+{% endblock %}

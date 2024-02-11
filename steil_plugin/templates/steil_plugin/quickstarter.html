@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans "Steil-Plugin Quickstarter" %}{% endblock %}
+{% block page_id %}page-steil-plugin-quickstarter{% endblock %}
+
+{% block contents %}
+<!--whole custom plugin content-->
+<div id="steil-plugin-importer" class="steil-plugin-container">    
+
+    <!--includes header bar, toolbar and toolbar buttons-->
+    <div id="header-content">
+
+        <!--plugin header bar with icon-->
+        <div class="row steil-plugin-headerbar">
+            <div class="col-sm-2">
+                <h2 class="steil-plugin-headerbar-title">Steil-Plugin: Quickstarter</h2>
+            </div>
+        </div>
+
+        <form id="quickstartForm">
+
+        <!--testplan toolbar header-->
+        <div class="row steil-plugin-toolbar-header-container">
+            <div class="col-sm steil-plugin-toolbar-header-title">
+                <h4 class="steil-plugin-toolbar-header-content">Test plan</h4>
+                <div class="steil-plugin-toolbar-header-content" id="testplan-id"></div>
+            </div>
+        </div>
+
+        <!--testplan user interface elements-->
+        <div class="row steil-plugin-toolbar-body-container">
+
+            <div id="testplan-input-container"></div>
+            
+        </div>
+
+        <!--testrun toolbar header-->
+        <div class="row steil-plugin-toolbar-header-container">
+            <div class="col-sm steil-plugin-toolbar-header-title">
+                <h4 class="steil-plugin-toolbar-header-content">Test run</h4>
+                <div class="steil-plugin-toolbar-header-content" id="testrun-id"></div>
+            </div>
+        </div>
+
+        <!--testrun user interface elements-->
+        <div class="row steil-plugin-toolbar-body-container">
+        
+            <div id="testrun-input-container"></div>
+
+        </div>
+
+        </form>
+
+        <!--testcases toolbar header-->
+        <div class="row steil-plugin-toolbar-header-container">
+            <div class="col-sm steil-plugin-toolbar-header-title">
+                <h4 class="steil-plugin-toolbar-header-content">Test cases</h4>
+            </div>
+        </div>
+        
+        <!--testcases user interface elements-->
+        <div class="row steil-plugin-quickstart-testcase-container">
+            
+            <!--input file selector-->
+            <div class="col-sm-2">
+                <input class="form-control" type="file" id="inp-file" accept=".csv">
+            </div>
+
+            <!--button groups for validating and importing table-->
+            <div class="btn-toolbar" role="toolbar">
+                <button type="button" class="btn btn-primary" id="btn-validate" disabled>Validate file</button>
+            </div>
+
+            <!--includes preview table for testcases-->
+            <div class="row steil-plugin-spacer-top">
+                <div class="col-sm-12">
+                    <h4>Test case preview</h4>
+
+                    <!--preview table buttonset for exporting-->
+                    <div class="btn-toolbar steil-plugin-spacer-bottom" role="toolbar">
+                        <button type="button" class="btn btn-primary btn-export" id="btn-export">Download table</button>
+                    </div>
+
+                    <!--preview table wrapper-->
+                    <div id="tbl_testcase_preview_wrapper">
+                        <table id="tbl_testcase_preview"></table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="steil-plugin-footer">
+                <div class="btn-toolbar steil-plugin-spacer-top" role="toolbar">
+                    <button type="button" class="btn btn-primary steil-plugin-button-right" style="float:left;" id="btn-manual">Show manual</button>
+                    <button type="button" class="btn btn-primary steil-plugin-button-right" id="btn-start" style="float:right;" disabled>Run quickstart</button>
+                <button type="button" class="btn btn-danger steil-plugin-button-right" id="btn-reset" style="float:right;">Reset</button>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+{{ basedata | json_script:"base-data" }}
+
+<!--loaded stylesheets and scripts-->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+<script src="{% static 'c3/c3.min.js' %}"></script>
+<script src="{% static 'd3/d3.min.js' %}"></script>
+<link rel="stylesheet" href="{% static 'css/shared.css' %}" />
+<script src="{% static 'js/ext/sweetalert.js' %}"></script>
+<script type="module" src="{% static 'js/shared.js' %}"></script>
+<script type="module" src="{% static 'js/quickstarter.js' %}"></script>
+{% endblock %}

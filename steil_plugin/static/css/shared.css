@@ -1,0 +1,132 @@
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    animation: spin 2s linear infinite;
+    position: absolute;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  #loader-wrapper {
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    width:100%;
+    height:calc(100% - 40px);
+    position:absolute;
+    visibility: visible;
+  }
+
+  #loader-frame {
+    width: 400px;
+    height: 300px;
+    border-style: solid;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    position:absolute;
+  }
+
+  #loader-title {
+    text-align: center;
+  }
+
+  .steil-plugin-quickstart-input-container {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .steil-plugin-quickstart-input-element {
+    width: 160px;
+  }
+
+  .steil-plugin-quickstart-input-label {
+    width: 120px;
+  }
+
+  .steil-plugin-container {
+    margin-left: 20px; 
+    margin-right: 20px;
+  }
+
+  .steil-plugin-headerbar {
+    background-color: rgb(1, 88, 53); 
+    margin-bottom: 10px; 
+    color: white;
+    font-weight: 800;
+  }
+
+  .steil-plugin-headerbar-title {
+    margin-top: 10px;
+    padding-left: 10px;
+  }
+
+  .steil-plugin-toolbar-header-container {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .steil-plugin-toolbar-header-title {
+    border-bottom: 2px solid lightslategrey; 
+    margin-bottom: 10px;
+    padding-left: 10px;
+    padding-top: 5px;
+    background-color: lightgrey;
+  }
+
+  .steil-plugin-toolbar-body-container {
+    /*border-bottom: 2px solid lightslategrey;*/
+    margin-bottom: 5px; 
+    padding-bottom: 5px; 
+    margin-left: 10px; 
+    margin-right: 10px;
+  }
+
+  .steil-plugin-quickstart-testcase-container {
+    padding-bottom: 10px; 
+    margin-left: 10px; 
+    margin-right: 10px;
+  }
+
+  .steil-plugin-spacer-top {
+    margin-top: 10px;
+  }
+
+  .steil-plugin-spacer-bottom {
+    margin-bottom: 10px;
+  }
+
+  .steil-plugin-toolbar-header-content {
+    display: inline-block;
+    font-weight: 600;
+  }
+
+  .steil-plugin-reporter-viz-button {
+    margin: 5px 5px 5px 5px;
+  }
+
+  .steil-plugin-footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    background-color: lightgray; 
+    border-top: 2px solid lightslategrey; 
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  #reporter-no-content-placeholder {
+    text-align: center;
+  }

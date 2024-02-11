@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans "Landing page" %}{% endblock %}
+{% block page_id %}page-steil-plugin-landing-page{% endblock %}
+
+{% block contents %}
+    <h1 style="margin-left: 10px;">Landing page</h1>
+    
+    <div class="panel panel-default col-sm-12 col-md-5 col-lg-5" style="padding:0; margin-right:1%; margin-left: 10px;">
+        <div class="panel-heading"><strong>Main menu</strong></div>
+        <table class="table table-striped">
+            <tbody>           
+                <tr>
+                    <td>
+                        <a href="/steil-plugin/importer">
+                            Generic import tool
+                        </a>
+                    </td>
+                    <td>
+                        Starts the generic import tool for uploading entities and test artifacts
+                    </td>
+                </tr>          
+                <tr>
+                    <td>
+                        <a href="/steil-plugin/quickstarter">
+                            Quickstarter
+                        </a>
+                    </td>
+                    <td>
+                        Starts the quickstart tool for creating a test run to a test plan and given test cases
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="/steil-plugin/reporter">
+                            Reporter
+                        </a>
+                    </td>
+                    <td>
+                        Starts the report tool for generating charts and reports.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="{% static 'c3/c3.min.js' %}"></script>
+    <script src="{% static 'd3/d3.min.js' %}"></script>
+{% endblock %}
